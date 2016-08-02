@@ -1,0 +1,26 @@
+{
+  "name": "soundwave.js",
+  "version": "1.0.0",
+  "description": "sound wave canvas animation for voice input",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Hacker-YHJ/soundwave.js.git"
+  },
+  "keywords": [
+    "sound",
+    "wave",
+    "canvas",
+    "animation",
+    "soundwave"
+  ],
+  "author": "Thomas Yang <jscnm1993@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Hacker-YHJ/soundwave.js/issues"
+  },
+  "homepage": "https://github.com/Hacker-YHJ/soundwave.js#readme"
+}
