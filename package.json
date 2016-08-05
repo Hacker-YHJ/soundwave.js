@@ -4,7 +4,8 @@
   "description": "sound wave canvas animation for voice input",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "webpack --watch --config webpack.config.js",
+    "build": "webpack --config webpack.config.dist.js"
   },
   "repository": {
     "type": "git",
@@ -22,5 +23,10 @@
   "bugs": {
     "url": "https://github.com/Hacker-YHJ/soundwave.js/issues"
   },
-  "homepage": "https://github.com/Hacker-YHJ/soundwave.js#readme"
+  "homepage": "https://github.com/Hacker-YHJ/soundwave.js#readme",
+  "devDependencies": {
+    "coffee-loader": "^0.7.2",
+    "coffee-script": "^1.10.0",
+    "webpack": "^1.13.1"
+  }
 }

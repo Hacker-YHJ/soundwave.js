@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <meta name="description" content="Descriptions">
+    <meta name="keywords" content="Keywords">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soundwave.js</title>
+    <link href="assets/images/favicon.png" rel="shortcut icon" type="image/vnd.microsoft.icon">
+    <script src="index.js" type="text/javascript" charset="utf-8"></script>
+    <style>
+      h1 {
+        font-size: 48px;
+        font-family: 'Helvetica Neue';
+        font-weight: lighter;
+        text-align: center;
+        margin-bottom: 80px;
+      }
+      canvas {
+        width: 100%;
+        height: 200px;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Soundwave.js</h1>
+    </header>
+    <canvas id="canvasDefault"></canvas>
+    <canvas id="canvasSquare"></canvas>
+    <canvas id="canvasTriangle"></canvas>
+  </body>
+  <script>
+    const canvas = document.getElementById('canvasDefault');
+    const canvasS = document.getElementById('canvasSquare');
+    const canvasT = document.getElementById('canvasTriangle');
+    const soundwave = new Soundwave(canvas);
+    const soundwaveT = new Soundwave(canvasT);
+    const soundwaveS = new Soundwave(canvasS);
+    if (!navigator.getUserMedia) {
+      navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia ||
+        navigator.mozGetUserMedia || navigator.msGetUserMedia;
+    }
+    navigator.getUserMedia({
+      audio: true
+    }, (stream) => {
+      const audioContext = new AudioContext();
+      const audioInput = audioContext.createMediaStreamSource(stream);
+      const analyserNode = audioContext.createAnalyser();
+      analyserNode.fftSize = 1 << 11;
+      audioInput.connect(analyserNode);
+      soundwave.connect(analyserNode);
+      soundwaveT.connect(analyserNode);
+      soundwaveS.connect(analyserNode);
+    }, (error) => {
+      throw error;
+    });
+    soundwave.addWave({
+      type: 'sine',
+      speed: 2,
+      waveLength: 40,
+      amplitude: .3,
+      shift: 0,
+    });
+    soundwave.addWave({
+      type: 'sine',
+      speed: 3,
+      waveLength: 70,
+      amplitude: .8,
+      shift: 0,
+    });
+    soundwave.addWave({
+      type: 'sine',
+      speed: 1,
+      waveLength: 50,
+      amplitude: .4,
+      shift: 0,
+    });
+    soundwave.addWave({
+      type: 'sine',
+      speed: 4,
+      waveLength: 150,
+      amplitude: .9,
+      shift: 0,
+    });
+    soundwave.start();
+    soundwaveS.addWave({
+      type: 'square',
+      speed: 2,
+      waveLength: 80,
+      amplitude: .1,
+      shift: 0,
+    });
+    soundwaveS.addWave({
+      type: 'square',
+      speed: 1,
+      waveLength: 200,
+      amplitude: .2,
+      shift: 0,
+    });
+    soundwaveS.addWave({
+      type: 'square',
+      speed: 1,
+      waveLength: 80,
+      amplitude: .3,
+      shift: 0,
+    });
+    soundwaveS.addWave({
+      type: 'square',
+      speed: 3,
+      waveLength: 150,
+      amplitude: .4,
+      shift: 0,
+    });
+    soundwaveS.start();
+    soundwaveT.addWave({
+      type: 'triangle',
+      speed: 2,
+      waveLength: 80,
+      amplitude: .1,
+      shift: 1,
+    });
+    soundwaveT.addWave({
+      type: 'triangle',
+      speed: 1,
+      waveLength: 200,
+      amplitude: .2,
+      shift: 0,
+    });
+    soundwaveT.addWave({
+      type: 'triangle',
+      speed: 1,
+      waveLength: 80,
+      amplitude: .3,
+      shift: 2,
+    });
+    soundwaveT.addWave({
+      type: 'triangle',
+      speed: 3,
+      waveLength: 150,
+      amplitude: .4,
+      shift: 0,
+    });
+    soundwaveT.start();
+  </script>
+</html>
